@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs">
+	<!--
+	<bean id="listener_mqtt_info_impl"
+		class="br.ufba.dcc.wiser.m2mqtt.service.IListenerMqttInfoService">
+		<property name="gatewayHardwareInfo" ref="gateway_hardware_info" />
+		<property name="serverCommunication" ref="server_communication_mqtt" />
+	</bean>
+	
+	<bean id="server_communication_mqtt"
+		class="br.ufba.dcc.wiser.m2mqtt.communication.ServerCommunication">
+	</bean>
+	
+	<reference id="gateway_hardware_info"
+		interface="br.ufba.dcc.wiser.m2client.service.IGatewayHardwareInfo" />
+	-->
+	
+</blueprint>
