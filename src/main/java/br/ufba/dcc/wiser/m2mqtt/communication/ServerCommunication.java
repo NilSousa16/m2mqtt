@@ -29,7 +29,7 @@ public class ServerCommunication {
 			
 			System.out.println("ServerCommunication - Dados sendo enviados: " + jsonObject);
 			System.out.println("ServerCommunication - Dados enviados para : " + uri);
-//			return true;
+
 			if (this.register("http://" + Consts.SERVER_IP + ":8181/cxf/" + uri, jsonObject)) {
 				return true;
 			}

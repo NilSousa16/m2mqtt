@@ -62,7 +62,7 @@ public class ListenerMqttInfoImpl implements IMqttMessageListener, IListenerMqtt
 					 * Gateway ID linked to the device Retrieved gateway information
 					 */
 					device.setGateway(
-							new Gateway(gatewayHardwareInfoService.getMacAddress(), null, null, null, true, null));
+							new Gateway(gatewayHardwareInfoService.getMacAddress(), null, null, null, true, null, null));
 
 					try {
 						if (serverCommunication.send(device)) {
