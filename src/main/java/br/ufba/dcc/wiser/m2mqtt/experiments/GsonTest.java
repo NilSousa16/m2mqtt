@@ -28,7 +28,7 @@ public class GsonTest {
 			device.setTypeSensor("Temperature");
 			device.setStatus(true);
 			device.setDate(Calendar.getInstance());
-			device.setGateway(new Gateway("88.55.88.55.88.55", "192.168.1.0", null, null, false, null, null));
+			device.setGateway(new Gateway("88.55.88.55.88.55", "192.168.1.0", null, null, false, null, null, null));
 
 			String jsonObject = gson.toJson(device);
 
