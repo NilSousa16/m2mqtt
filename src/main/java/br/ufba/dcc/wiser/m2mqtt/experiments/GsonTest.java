@@ -25,7 +25,8 @@ public class GsonTest {
 			device.setId("156512d");
 			device.setLocation("12.9922935,-38.5166708");
 			device.setDescription("Device monitor temperature");
-			device.setTypeSensor("Temperature");
+			device.setTypeDevice("Temperature");
+			device.setCategory("Sensor");
 			device.setStatus(true);
 			device.setDate(Calendar.getInstance());
 			device.setGateway(new Gateway("88.55.88.55.88.55", "192.168.1.0", null, null, false, null, null, null));
@@ -41,7 +42,8 @@ public class GsonTest {
 			System.out.println("Id: " + deviceConvertido.getId());
 			System.out.println("Location: " + deviceConvertido.getLocation());
 			System.out.println("Description: " + deviceConvertido.getDescription());
-			System.out.println("Type Sensor: " + deviceConvertido.getTypeSensor());
+			System.out.println("Type Device: " + deviceConvertido.getTypeDevice());
+			System.out.println("Category: " + deviceConvertido.getCategory());
 			System.out.println("Status: " + deviceConvertido.getStatus());
 			System.out.println("Date: " + form.format(deviceConvertido.getDate().getTime()));
 			System.out.println("Gateway: " + deviceConvertido.getGateway().getMac());
@@ -50,7 +52,7 @@ public class GsonTest {
 			DeviceStatus deviceStatus = new DeviceStatus();
 
 			// generating information
-			deviceStatus.setDevice(new Device("12.9922935,-38.5166708", "Device monitor temperature", "Temperature", true, Calendar.getInstance(), "88.55.88.55.88.55"));
+			deviceStatus.setDevice(new Device("12.9922935,-38.5166708", "Device monitor temperature", "Temperature", "Sensor", true, Calendar.getInstance(), "88.55.88.55.88.55"));
 			deviceStatus.setDate(Calendar.getInstance());
 			deviceStatus.setSituation("operational");
 			
@@ -92,7 +94,7 @@ public class GsonTest {
 			System.out.println("Situation: " + deviceStatusTransferConverter.getSituation());
 			System.out.println("Date: " + form.format(deviceStatusTransferConverter.getDate().getTime()));
 		} if (op == 5) {
-			Gson gson;
+//			Gson gson;
 			
 			
 		}
