@@ -19,20 +19,20 @@ package br.ufba.dcc.wiser.m2mqtt;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-import br.ufba.dcc.wiser.m2mqtt.communication.ClientMQTTCommunication;
-import br.ufba.dcc.wiser.m2mqtt.impl.ListenerMqttInfoImpl;
+import br.ufba.dcc.wiser.m2mqtt.communication.ListenMQTTMessage;
+import br.ufba.dcc.wiser.m2mqtt.communication.MQTTClientDevice;
 import br.ufba.dcc.wiser.m2mqtt.utils.Consts;
 
 public class Activator implements BundleActivator {
 
-	ClientMQTTCommunication clientMQTTCommunication = new ClientMQTTCommunication(Consts.BROKER_IP, null, null);
+	MQTTClientDevice clientMQTTCommunication = new MQTTClientDevice(Consts.BROKER_IP, "wiser", "wiser");
 	
     public void start(BundleContext context) throws InterruptedException {       
     	System.out.println("Starting the bundle - m2mqtt");  
         
         clientMQTTCommunication.start();
-        new ListenerMqttInfoImpl(clientMQTTCommunication, "manager/register", 0); 
-        new ListenerMqttInfoImpl(clientMQTTCommunication, "manager/data", 0); 
+        new ListenMQTTMessage(clientMQTTCommunication, "manager/register", 0); 
+        new ListenMQTTMessage(clientMQTTCommunication, "manager/data", 0); 
         
         // envio mensagem para o servidor
     }

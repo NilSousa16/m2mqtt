@@ -31,11 +31,11 @@
 		<!-- -->
 
 		<!-- -->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.apache.servicemix.bundles</groupId>
 			<artifactId>org.apache.servicemix.bundles.commons-httpclient</artifactId>
 			<version>3.1_7</version>
-		</dependency>
+		</dependency>-->
 		<!-- -->
 		
 		<!-- JSON -->
@@ -47,25 +47,25 @@
 		<!-- JSON -->
 		
 		<!-- Dependencies for information hardware -->
-		<dependency>
+		<!--<dependency>
 			<groupId>com.github.oshi</groupId>
 			<artifactId>oshi-core</artifactId>
 			<version>5.3.3</version>
-		</dependency>
+		</dependency>-->
 		<!-- Dependencies for information hardware -->
 
 		<!-- Dependencies m2fot -->
 		<dependency>
 			<groupId>br.ufba.dcc.wiser</groupId>
 			<artifactId>m2model</artifactId>
-			<version>${project.version}</version>
+			<version>1.0.0</version>
 		</dependency>
 		
-		<dependency>
+		<!--<dependency>
 			<groupId>br.ufba.dcc.wiser</groupId>
 			<artifactId>m2client</artifactId>
 			<version>${project.version}</version>
-		</dependency>
+		</dependency>-->
 		<!-- Dependencies m2fot -->
 		
 		<dependency>
