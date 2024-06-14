@@ -98,10 +98,10 @@ public class MQTTClientDevice implements MqttCallbackExtended {
 				client.publish(topic, message);
 				System.out.println("Message published in " + topic);
 			} else {
-				System.out.println("Cliente desconectado, não foi possível publicar o tópico " + topic);
+				System.out.println("Client disconnected, topic could not be published " + topic);
 			}
 		} catch (MqttException ex) {
-			System.out.println("Erro ao publicar " + topic + " - " + ex);
+			System.out.println("Error publishing " + topic + " - " + ex);
 		}
 
 	}
