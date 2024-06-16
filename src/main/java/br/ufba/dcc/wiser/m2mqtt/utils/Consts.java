@@ -7,5 +7,6 @@ public class Consts {
     
     public static final String REGISTER_DEVICE = "manager/register";
     public static final String SEND_INFO_DEVICE = "manager/data";
+    public static final String MESSAGE_RECEIVED = "manager/received";
 	
 }
