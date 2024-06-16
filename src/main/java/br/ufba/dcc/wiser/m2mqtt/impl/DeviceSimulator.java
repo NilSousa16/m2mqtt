@@ -6,13 +6,18 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import com.google.gson.Gson;
+
 import br.ufba.dcc.wiser.m2model.model.Device;
+import br.ufba.dcc.wiser.m2mqtt.communication.MQTTClientDevice;
 import br.ufba.dcc.wiser.m2mqtt.service.IDeviceSimulatorMqttInfoService;
+import br.ufba.dcc.wiser.m2mqtt.utils.Consts;
 import br.ufba.dcc.wiser.m2mqtt.utils.DeviceDataGenerator;
 
 public class DeviceSimulator implements IDeviceSimulatorMqttInfoService {
 	private List<Device> listDevices;
 	private DeviceDataGenerator deviceDataGenerator;
+	MQTTClientDevice clientMQTTCommunication;
 
 	private String location;
 	private String description;
@@ -21,9 +26,12 @@ public class DeviceSimulator implements IDeviceSimulatorMqttInfoService {
 	private Boolean status;
 	private Calendar date;
 	
-	public DeviceSimulator(int quantityDevices) {
+	public DeviceSimulator(MQTTClientDevice clientMQTTCommunication, int quantityDevices) {
 		listDevices = new ArrayList<>();
 		deviceDataGenerator = new DeviceDataGenerator();
+		
+		this.clientMQTTCommunication = clientMQTTCommunication;
+		
 		Random random = new Random();
 
 		for (int interator = 0; interator < quantityDevices; interator++) {
@@ -35,6 +43,12 @@ public class DeviceSimulator implements IDeviceSimulatorMqttInfoService {
 			date = Calendar.getInstance();
 
 			this.createDevice(location, description, typeDevice, category, status, date, null);
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -42,6 +56,13 @@ public class DeviceSimulator implements IDeviceSimulatorMqttInfoService {
 			Calendar date, String macGateway) {
 		String id = UUID.randomUUID().toString();
 		Device device = new Device(id, location, description, typeDevice, category, status, date, macGateway);
+		
+		Gson gson = new Gson();
+		Object objectDevice = device;
+		String jsonObject = gson.toJson(objectDevice);
+		
+		clientMQTTCommunication.publish(Consts.REGISTER_DEVICE, jsonObject, 0);
+		
 		listDevices.add(device);
 	}
 
@@ -63,5 +84,10 @@ public class DeviceSimulator implements IDeviceSimulatorMqttInfoService {
 		if (device != null) {
 			device.setStatus(status);
 		}
+	}
+	
+	public void deviceMonitor() {
+		
+
 	}
 }

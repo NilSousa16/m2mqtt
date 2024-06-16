@@ -19,8 +19,6 @@ package br.ufba.dcc.wiser.m2mqtt;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-import com.google.gson.Gson;
-
 import br.ufba.dcc.wiser.m2mqtt.communication.ListenMQTTMessage;
 import br.ufba.dcc.wiser.m2mqtt.communication.MQTTClientDevice;
 import br.ufba.dcc.wiser.m2mqtt.impl.DeviceSimulator;
@@ -29,31 +27,24 @@ import br.ufba.dcc.wiser.m2mqtt.utils.Consts;
 public class Activator implements BundleActivator {
 
 	MQTTClientDevice clientMQTTCommunication = new MQTTClientDevice(Consts.BROKER_IP, null, null);
-	String[] topics = { "manager/register", "manager/data" };
+	String[] topics = { Consts.REGISTER_DEVICE, Consts.SEND_INFO_DEVICE };
 
 	DeviceSimulator deviceSimulator;
 
 	public void start(BundleContext context) throws InterruptedException {
 		clientMQTTCommunication.start();
 
-		deviceSimulator = new DeviceSimulator(10);
+		deviceSimulator = new DeviceSimulator(clientMQTTCommunication, 10);
 		
-		Gson gson = new Gson();
-		
-		deviceSimulator.getListDevices().stream().forEach(device -> {
-			Object objectDevice = device;
-			String jsonObject = gson.toJson(objectDevice);
-			clientMQTTCommunication.publish("manager/register", jsonObject, 0);
-			System.out.println("Message sending...");
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		});
-
 		new ListenMQTTMessage(clientMQTTCommunication, 0, deviceSimulator, topics);
 
+		// deviceSimulator.deviceMonitor();
+		
+		// envio das mensagens em background sobre o status dos dispositivos
+		// deviceSimulator.deviceMonitor();
+		// MONTAR DEVICEMONITOR PARA BACKGROUND
+		// deviceSimulator
+		
 		System.out.println("Starting the bundle - m2mqtt");
 	}
 
