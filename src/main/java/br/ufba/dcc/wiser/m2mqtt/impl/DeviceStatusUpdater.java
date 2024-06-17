@@ -1,5 +1,7 @@
 package br.ufba.dcc.wiser.m2mqtt.impl;
 
+import br.ufba.dcc.wiser.m2mqtt.simulation.DeviceSimulator;
+
 public class DeviceStatusUpdater implements Runnable {
 
 	private volatile boolean running = true;

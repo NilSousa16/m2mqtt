@@ -8,8 +8,8 @@ import org.osgi.framework.BundleContext;
 
 import br.ufba.dcc.wiser.m2mqtt.communication.ListenMQTTMessage;
 import br.ufba.dcc.wiser.m2mqtt.communication.MQTTClientDevice;
-import br.ufba.dcc.wiser.m2mqtt.impl.DeviceSimulator;
 import br.ufba.dcc.wiser.m2mqtt.impl.DeviceStatusUpdater;
+import br.ufba.dcc.wiser.m2mqtt.simulation.DeviceSimulator;
 import br.ufba.dcc.wiser.m2mqtt.utils.Consts;
 
 public class Activator implements BundleActivator {

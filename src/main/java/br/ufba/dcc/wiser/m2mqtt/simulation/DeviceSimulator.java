@@ -1,11 +1,10 @@
-package br.ufba.dcc.wiser.m2mqtt.impl;
+package br.ufba.dcc.wiser.m2mqtt.simulation;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.ScheduledExecutorService;
 
 import com.google.gson.Gson;
 
@@ -19,21 +18,16 @@ public class DeviceSimulator implements IDeviceSimulatorMqttInfoService {
 	private List<Device> listDevices;
 	private DeviceDataGenerator deviceDataGenerator;
 
-	MQTTClientDevice clientMQTTCommunication;
+	private MQTTClientDevice clientMQTTCommunication;
 
-	ScheduledExecutorService scheduler;
-
-	Gson gson;
-	Random random;
-
-	private String location;
-	private String description;
-	private String typeDevice;
-	private String category;
-	private Boolean status;
-	private Calendar date;
+	private Gson gson;
+	private Random random;
 
 	public DeviceSimulator(MQTTClientDevice clientMQTTCommunication, int quantityDevices) {
+		String location, description, typeDevice, category;
+		Boolean status;
+		Calendar date;
+
 		listDevices = new ArrayList<>();
 		deviceDataGenerator = new DeviceDataGenerator();
 
@@ -90,13 +84,15 @@ public class DeviceSimulator implements IDeviceSimulatorMqttInfoService {
 		Device device = getDeviceById(id);
 		if (device != null) {
 			device.setStatus(status);
+
+			gson = new Gson();
+			Object objectDevice = device;
+			String jsonObject = gson.toJson(objectDevice);
+
+			clientMQTTCommunication.publish(Consts.SEND_INFO_DEVICE, jsonObject, 0);
+		} else {
+			System.out.println("Device not found.");
 		}
-
-		gson = new Gson();
-		Object objectDevice = device;
-		String jsonObject = gson.toJson(objectDevice);
-
-		clientMQTTCommunication.publish(Consts.SEND_INFO_DEVICE, jsonObject, 0);
 	}
 
 	public void deviceMonitor() {

@@ -3,7 +3,7 @@ package br.ufba.dcc.wiser.m2mqtt.communication;
 import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-import br.ufba.dcc.wiser.m2mqtt.impl.DeviceSimulator;
+import br.ufba.dcc.wiser.m2mqtt.simulation.DeviceSimulator;
 
 /**
  *  manager/register - tópico responsável por ENVIAR dados para o cadastro do dispositivo
