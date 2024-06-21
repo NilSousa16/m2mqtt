@@ -1,4 +1,4 @@
-package br.ufba.dcc.wiser.m2mqtt.service;
+package br.ufba.dcc.wiser.m2mqtt.interfaces;
 
 import java.util.Calendar;
 import java.util.List;

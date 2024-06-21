@@ -4,9 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * This class generates random data for device simulations, including random
+ * categories, locations, and text.
+ * 
+ * @author Nilson Rodrigues Sousa
+ */
 public class DeviceDataGenerator {
+	/**
+	 * List of device simulation categories.
+	 */
 	private List<String> listSimulationCategory;
 
+	/**
+	 * Constructor that initializes the list of device simulation categories.
+	 */
 	public DeviceDataGenerator() {
 		this.listSimulationCategory = new ArrayList<>();
 
@@ -31,16 +43,28 @@ public class DeviceDataGenerator {
 		listSimulationCategory.add("Sensor de impressão digital");
 	}
 
+	/**
+	 * Selects a random geographic location.
+	 * 
+	 * @return A string representing the random geographic coordinates in the format
+	 *         "latitude, longitude".
+	 */
 	public String selectRandomLocation() {
 		Random random = new Random();
-		
+
 		double latitude = -90 + (90 - (-90)) * random.nextDouble();
 		double longitude = -180 + (180 - (-180)) * random.nextDouble();
 		String coordinate = String.format("%.4f, %.4f", latitude, longitude);
-		
+
 		return coordinate;
 	}
 
+	/**
+	 * Selects a random category from the list of simulation categories.
+	 * 
+	 * @return A string representing a randomly selected category, or null if the
+	 *         list is empty.
+	 */
 	public String selectRandomCategory() {
 		if (!listSimulationCategory.isEmpty()) {
 			Random random = new Random();
@@ -53,6 +77,12 @@ public class DeviceDataGenerator {
 		}
 	}
 
+	/**
+	 * Generates a random text of a specified length.
+	 * 
+	 * @param length The length of the random text to be generated.
+	 * @return A string containing random characters of the specified length.
+	 */
 	public String generateRandomText(int length) {
 		String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 		Random random = new Random();
